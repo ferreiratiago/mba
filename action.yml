@@ -1,0 +1,24 @@
+# Copyright (C) 2022 Explore.dev Unipessoal Lda. All Rights Reserved.
+# Use of this source code is governed by a license that can be
+# found in the LICENSE file.
+
+name: "ft-mba"
+description: "ft-mba"
+branding:
+  icon: "send"
+  color: "blue"
+inputs:
+  condition:
+    description: Condition to be met
+    required: true
+  token:
+    description: PAT
+    default: ${{ github.token }}
+    required: false
+  repository:
+    description: Repository where the action is running.
+    default: ${{ github.repository }}
+    required: false
+runs:
+  using: "docker"
+  image: "docker://ferreiratiago/mergebot"
