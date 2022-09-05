@@ -1,0 +1,33 @@
+# Copyright (C) 2022 Explore.dev Unipessoal Lda. All Rights Reserved.
+# Use of this source code is governed by a license that can be
+# found in the LICENSE file.
+
+name: "Reviewpad MergeBot"
+description: "Reviewpad MergeBot automates pull requests merge process."
+branding:
+  icon: "send"
+  color: "blue"
+inputs:
+  condition:
+    description: >
+      The condition to evaluate for merge.
+      If the condition evaluates to true, the merge bot will try to merge the pull request.
+      If the condition evaluates to false, the merge bot stops.
+      This condition is written using Reviewpad Aladino language.
+      See more details about the language at https://docs.reviewpad.com/guides/aladino/specification
+    required: true
+  token:
+    description: >
+      Personal access token (PAT) used to fetch information from the repository.
+      The PAT is configured with the local git config, which enables your scripts
+      to run authenticated git commands. The post-job step removes the PAT.
+      We recommend using a service account with the least permissions necessary.
+    default: ${{ github.token }}
+    required: false
+  repository:
+    description: Repository where the action is running.
+    default: ${{ github.repository }}
+    required: false
+runs:
+  using: "docker"
+  image: "docker://ferreiratiago/mergebot"
